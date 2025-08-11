@@ -132,6 +132,42 @@
             background-size: 200% 200%;
             animation: gradient-animation 15s ease infinite;
         }
+
+        /* 다크/라이트 모드 전환 애니메이션 스타일 */
+        #theme-toggle {
+            position: relative;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        #theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+        #theme-toggle i {
+            position: absolute;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+        /* 라이트 모드 상태 (기본) */
+        #theme-icon-dark {
+            transform: rotate(-90deg) scale(0.8);
+            opacity: 0;
+        }
+        #theme-icon-light {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+        /* 다크 모드 상태 */
+        .dark #theme-icon-light {
+            transform: rotate(90deg) scale(0.8);
+            opacity: 0;
+        }
+        .dark #theme-icon-dark {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -149,7 +185,7 @@
                 </div>
                 <button id="theme-toggle" class="ml-4 p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none text-lg">
                     <i class="fas fa-sun text-amber-500" id="theme-icon-light"></i>
-                    <i class="fas fa-moon hidden" id="theme-icon-dark"></i>
+                    <i class="fas fa-moon" id="theme-icon-dark"></i>
                 </button>
             </div>
         </div>
@@ -184,7 +220,7 @@
                         <li class="flex items-center"><i class="fas fa-user fa-fw mr-4 text-indigo-500 dark:text-indigo-400"></i><strong class="font-semibold text-slate-800 w-24">Name:</strong> Hojung Jin (a.k.a. Jhojung)</li>
                         <li class="flex items-center"><i class="fas fa-map-marker-alt fa-fw mr-4 text-indigo-500 dark:text-indigo-400"></i><strong class="font-semibold text-slate-800 w-24">Location:</strong> Suwon, Republic of Korea</li>
                         <li class="flex items-center"><i class="fas fa-envelope fa-fw mr-4 text-indigo-500 dark:text-indigo-400"></i><strong class="font-semibold text-slate-800 w-24">e-Mail:</strong> <a href="mailto:jhojung0311@skku.edu" class="hover:underline">jhojung0311@skku.edu</a></li>
-                        <li class="flex items-center"><i class="fas fa-gamepad fa-fw mr-4 text-indigo-500 dark:text-indigo-400"></i><strong class="font-semibold text-slate-800 w-24">Interests:</strong> System Programming, HCI, Game Development</li>
+                        <li class="flex items-center"><i class="fas fa-gamepad fa-fw mr-4 text-indigo-500 dark:text-indigo-400"></i><strong class="font-semibold text-slate-800 w-24">Interests:</strong> System Programming, HCI</li>
                     </ul>
                 </div>
             </section>
@@ -245,7 +281,7 @@
                                 <p class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold">Mar 2025 - Present</p>
                                 <h3 class="font-bold text-slate-800">Sungkyunkwan University</h3>
                                 <p class="text-sm text-slate-500">B.S. in Computer Science and Engineering</p>
-                                <p class="text-xs text-slate-500 mt-1">GPA: 4.5 / 4.5 (Overall), 4.5 / 4.5 (Major)</p>
+                                <p class="text-xs text-slate-500 mt-1">GPA: 4.50 / 4.50 (Overall), 4.50 / 4.50 (Major)</p>
                             </div>
                             <div class="relative pl-8 timeline-item">
                                 <p class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold">Mar 2022 - Jan 2025</p>
@@ -350,12 +386,8 @@
 
             if (currentTheme === 'dark') {
                 htmlEl.classList.add('dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
             } else {
                 htmlEl.classList.remove('dark');
-                lightIcon.classList.remove('hidden');
-                darkIcon.classList.add('hidden');
             }
 
             // 테마 토글 버튼 클릭 이벤트
@@ -364,9 +396,6 @@
                 
                 const isDark = htmlEl.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-                lightIcon.classList.toggle('hidden', isDark);
-                darkIcon.classList.toggle('hidden', !isDark);
             });
 
             // Scroll Animation
