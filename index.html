@@ -57,6 +57,31 @@
         }
     </script>
     <style>
+            /* 모바일 렌더링 최적화 */
+        #profile-modal, 
+        #profile-modal-card {
+            /* GPU 가속 활성화 */
+            will-change: transform, opacity;
+            -webkit-font-smoothing: antialiased;
+            /* 터치 시 발생하는 하이라이트 제거 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #profile-modal-card img {
+            /* 이미지 깜빡임 방지 */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            position: relative;
+            z-index: 10;
+        }
+
+    /* 상단 <style> 태그 내 수정 */
+        #profile-modal-close {
+            /* 이미지와 동일하게 하드웨어 가속을 부여하되, z-index를 더 높게 설정 */
+            transform: translateZ(10px) !important; 
+            z-index: 100;
+        }
         @keyframes erasing {
             from { width: 100%; }
             to { width: 0; }
