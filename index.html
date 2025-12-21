@@ -858,10 +858,15 @@
         const profileModalClose = document.getElementById('profile-modal-close');
 
         function openProfileModal() {
+            // 1. 먼저 표시 상태로 전환
             profileModal.classList.remove('opacity-0', 'pointer-events-none');
             profileModal.classList.add('opacity-100');
-            profileModalCard.classList.remove('scale-95', 'translate-y-4');
-            profileModalCard.classList.add('scale-100', 'translate-y-0');
+
+            // 2. 브라우저가 위치와 투명도를 인지한 후 애니메이션 실행
+            requestAnimationFrame(() => {
+                profileModalCard.classList.remove('scale-95', 'translate-y-4');
+                profileModalCard.classList.add('scale-100', 'translate-y-0');
+            });
         }
 
         function closeProfileModal() {
