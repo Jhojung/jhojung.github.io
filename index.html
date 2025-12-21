@@ -201,13 +201,11 @@
     <!-- Navigation -->
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 animate-fade-in-up">
         <nav class="nav-float rounded-full pl-3 pr-2 py-2.5 max-w-4xl w-full flex justify-between items-center transition-all duration-500">
-            <a href="#" class="flex items-center gap-3 group">
                 <!-- Profile Image (Using GitHub Avatar) -->
                 <div class="relative w-9 h-9 rounded-full overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 group-hover:scale-105 transition-transform duration-300">
                     <img id="profile-thumb" src="https://i.ibb.co/Q795r3vT/Profile-Mii.png" alt="Profile" class="w-full h-full object-cover">
                 </div>
                 <span class="font-heading font-bold text-slate-800 dark:text-slate-200 tracking-tight hidden sm:block">About Me</span>
-            </a>
 
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-1 bg-slate-100/50 dark:bg-slate-800/50 rounded-full px-1.5 py-1.5">
@@ -864,7 +862,6 @@
             profileModal.classList.add('opacity-100');
             profileModalCard.classList.remove('scale-95', 'translate-y-4');
             profileModalCard.classList.add('scale-100', 'translate-y-0');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeProfileModal() {
