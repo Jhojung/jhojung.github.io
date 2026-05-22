@@ -31,8 +31,8 @@
                     },
                     keyframes: {
                         blob: {
-                            "0%": { transform: "translate(0px, 0px) scale(1)" },
-                            "100%": { transform: "translate(20px, -20px) scale(1.1)" },
+                            "0%": { transform: "translate(0px, 0px) scale(1) translateZ(0)" },
+                            "100%": { transform: "translate(20px, -20px) scale(1.1) translateZ(0)" },
                         },
                         float: {
                             "0%, 100%": { transform: "translateY(0)" },
@@ -102,6 +102,7 @@
             border: 1px solid rgba(255, 255, 255, 0.8);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             transition: background-color 0.3s, border-color 0.3s;
+            transform: translateZ(0);
         }
 
         .glass-card {
@@ -109,11 +110,13 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .glass-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) translateZ(0);
             background: rgba(255, 255, 255, 0.9);
             border-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.05);
@@ -142,13 +145,14 @@
         /* Reveal Animation Class */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateY(30px) translateZ(0);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
         }
 
         .reveal-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) translateZ(0);
         }
 
         /* Typing Animation */
